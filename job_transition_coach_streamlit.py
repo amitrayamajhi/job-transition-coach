@@ -74,14 +74,16 @@ def render_checklist(category: str, data: Dict[str, Any]) -> None:
     items: List[Dict[str, Any]] = data.get(category, [])
     st.subheader(f"Manage {category.replace('_', ' ').title()}")
     # Input for new item
-    new_item = st.text_input(f"Add a new {category[:-1]}:", key=f"input_{category}")
-    if new_item:
-        items.append({"text": new_item, "done": False})
+    # A form with clear_on_submit empties the box after adding, so the same
+    # text is not re-added on every rerun.
+    with st.form(key=f"form_{category}", clear_on_submit=True):
+        new_item = st.text_input(f"Add a new {category[:-1]}:")
+        submitted = st.form_submit_button("Add")
+    if submitted and new_item.strip():
+        items.append({"text": new_item.strip(), "done": False})
         data[category] = items
         save_data(data)
-        # Clear the input by resetting the widget key. Streamlit clears
-        # text inputs automatically on rerun.
-        st.experimental_rerun()
+        st.rerun()
 
     # Display items with checkboxes
     for i, item in enumerate(items):
@@ -98,7 +100,7 @@ def render_checklist(category: str, data: Dict[str, Any]) -> None:
             items.pop(i)
             data[category] = items
             save_data(data)
-            st.experimental_rerun()
+            st.rerun()
 
 
 def main() -> None:
