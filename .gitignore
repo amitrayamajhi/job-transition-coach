@@ -1,0 +1,14 @@
+# Your personal data — never commit it
+job_coach_data.json
+job_coach_data.json.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Streamlit secrets
+.streamlit/secrets.toml
