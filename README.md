@@ -9,8 +9,7 @@ A simple planner for changing jobs. Set a goal and a deadline, track your
 applications from *Applied* to *Offer*, and keep your to-dos, courses,
 portfolio pieces and visa/finance prep in one place.
 
-<!-- Replace with your Streamlit Community Cloud link once deployed (see "Deploy" below) -->
-**Live demo:** _coming soon_
+**Live demo:** https://job-transition-coach.streamlit.app/
 
 ![Dashboard](docs/dashboard.png)
 
